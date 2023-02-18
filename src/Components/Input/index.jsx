@@ -8,25 +8,37 @@ function Input() {
   const formik = useFormik({
     initialValues: {
       id: "",
-      todo: "First Todo",
+      todo: "Enter Todo",
       done: false,
     },
-    onSubmit: (values) => {
+    onSubmit: (values, bag) => {
       addTodo(values.todo);
+      bag.resetForm();
     },
   });
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    if (!formik.values.todo) {
+      alert("Lütfen bir değer girin.");
+      return;
+    }
+    formik.handleSubmit();
+  };
   return (
     <div className={styles.wrapper}>
-      <form onSubmit={formik.handleSubmit}>
+      <form onSubmit={handleSubmit}>
         <label htmlFor="todo">Enter Todo: </label>
-        <input
-          className={styles.input_todo}
-          id="todo"
-          name="todo"
-          type="text"
-          onChange={formik.handleChange}
-          value={formik.values.todo}
-        />
+        <div className={styles.center}>
+          <input
+            className={styles.input_todo}
+            id="todo"
+            name="todo"
+            type="text"
+            onChange={formik.handleChange}
+            value={formik.values.todo}
+          />
+          {formik.errors.todo ? alert(formik.errors.todo) : null}
+        </div>
         <button type="submit">Submit</button>
       </form>
     </div>
