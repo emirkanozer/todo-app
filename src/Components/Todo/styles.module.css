@@ -1,0 +1,27 @@
+.wrapper{
+    display: flex;
+    margin-top: 1rem;
+    padding: 1rem;
+    border-radius: 5px;
+    background-color: aqua;
+}
+
+.input_checkbox{
+    width: 5%;
+}
+
+.todos{
+    width: 90%;
+    padding: 0.25rem 0rem;
+}
+
+.delete{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 5%;
+    border: none;
+    padding: 0rem;
+    border-radius: 50%;
+    background-color: rgb(255, 0, 0);
+}
