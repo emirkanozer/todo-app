@@ -30,10 +30,22 @@ export const TodoContextProvider = ({ children }) => {
     localStorage.setItem("todos", JSON.stringify(todos));
   }, [todos]);
 
+  const isDone = (id, done) => {
+    const cloned_todos = todos.map((todo) => {
+      if (todo.id === id) {
+        return { ...todo, done };
+      }
+      console.log(todo);
+      return todo;
+    });
+    setTodos(cloned_todos);
+  };
+
   const values = {
     todos,
     addTodo,
     deleteTodo,
+    isDone,
   };
   return <TodoContext.Provider value={values}>{children}</TodoContext.Provider>;
 };
